@@ -231,7 +231,7 @@ mjx-container[display="true"] + br {
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -259,6 +259,118 @@ mjx-container[display="true"] + br {
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/26/AcWing-1027/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Schrodinger of Night Breeze">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LostMagician">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | LostMagician">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/01/26/AcWing-1027/" class="post-title-link" itemprop="url">AcWing-1027</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-26 23:50:45" itemprop="dateCreated datePublished" datetime="2023-01-26T23:50:45+08:00">2023-01-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-01-27 00:10:47" itemprop="dateModified" datetime="2023-01-27T00:10:47+08:00">2023-01-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CS/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CS/Algorithm/AcWing/" itemprop="url" rel="index"><span itemprop="name">AcWing</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CS/Algorithm/AcWing/Second-Level/" itemprop="url" rel="index"><span itemprop="name">Second-Level</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CS/Algorithm/AcWing/Second-Level/Chapter1-Dynamic-Programming/" itemprop="url" rel="index"><span itemprop="name">Chapter1-Dynamic Programming</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>###思路
+核心问题为处理两条路径的重合点。可以将情景等同为两条路径同时开始，如果在某个点重合，必定同时走到那个点，且横纵坐标的和相等。每个点有两种到达方式，那么两条路到一个或两个点就有四种方式，状态转移方程为：
+<span class="math display">\[
+f[k][i][j] =
+max(f[k][i][j],f[k-1][i][j],f[k-1][i-1][j],f[k-1][i][j-1],f[k-1][i-1][j-1])
+\]</span> 其中，<span
+class="math inline">\(k\)</span>为当前到达点横纵坐标的和，<span
+class="math inline">\(i\)</span>和<span
+class="math inline">\(j\)</span>分别表示两个当前到达点的横坐标。当<span
+class="math inline">\(i=j\)</span>时，这个点的权重只加一次。(课堂题，<span
+class="math inline">\(AcWing-275\)</span>同理)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">15</span>, INF = <span class="number">1e9</span>;</span><br><span class="line"><span class="type">int</span> f[<span class="number">2</span> * N][N][N];</span><br><span class="line"><span class="type">int</span> w[N][N];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> T;</span><br><span class="line">    cin &gt;&gt; T;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> a, b, c;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">        <span class="keyword">if</span> (!(a || b || c))</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        w[a][b] = c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">2</span>; k &lt;= <span class="number">2</span> * T; k++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= T; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= T; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">int</span> i_1 = k - i, j_1 = k - j;</span><br><span class="line">                <span class="keyword">if</span> (i_1 &gt;= <span class="number">1</span> &amp;&amp; i_1 &lt;= T &amp;&amp; j_1 &gt;= <span class="number">1</span> &amp;&amp; j_1 &lt;= T)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="type">int</span> t = w[i][i_1];</span><br><span class="line">                    <span class="keyword">if</span> (i != j)</span><br><span class="line">                        t += w[j][j_1];</span><br><span class="line">                    f[k][i][j] = <span class="built_in">max</span>(f[k][i][j], f[k - <span class="number">1</span>][i][j] + t);</span><br><span class="line">                    f[k][i][j] = <span class="built_in">max</span>(f[k][i][j], f[k - <span class="number">1</span>][i - <span class="number">1</span>][j] + t);</span><br><span class="line">                    f[k][i][j] = <span class="built_in">max</span>(f[k][i][j], f[k - <span class="number">1</span>][i][j - <span class="number">1</span>] + t);</span><br><span class="line">                    f[k][i][j] = <span class="built_in">max</span>(f[k][i][j], f[k - <span class="number">1</span>][i - <span class="number">1</span>][j - <span class="number">1</span>]+t);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; f[<span class="number">2</span> * T][T][T] &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1051,75 +1163,6 @@ class="math inline">\(0\)</span>,必定会影响结果的正确性。（课堂�
 <p>    我陷入了沉思。学校不让带手机，所以，记录这样的美景对于一个美学家来说就成了难事，不过，既然是美学家，那也应该能够在这样的小事上超越物质的束缚，用精神留下永恒的烙印。于是，我继续盯着那束光，我想在那散落金丝的千篇一律中找到值得我去遐想的大千世界。</p>
 <p>    有那么几丝光落到了我眼前的试卷上，他们是从屋顶两侧的玻璃透进来的，他们扫描着刚刚风干的墨迹和那些没有复印清楚的试题，当扫描到那只还没有套上笔套的碳素时，从还从笔头的钢珠上点出了一缕颇有灵气的反光，然后继续向着远处的座位移动。</p>
 <p>    我站起身来，向后门走去，想看看最后一抹落日余晖，毕竟后门出去之后是一个高高的、宽敞的台阶，没有那些挡住视线的楼群......</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/21/a/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Schrodinger of Night Breeze">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LostMagician">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | LostMagician">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/01/21/a/" class="post-title-link" itemprop="url">a</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-21 14:08:21" itemprop="dateCreated datePublished" datetime="2023-01-21T14:08:21+08:00">2023-01-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
 
       
     </div>
