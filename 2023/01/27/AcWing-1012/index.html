@@ -27,12 +27,11 @@
 <meta property="og:description" content="思路： 将每条航线存入一个结构体，根据航线的第一个城市的序号排序，在第二个城市序列中寻找最长上升子序列。原理是：在排序后的序列中，\(b[i]\)的\(i\)是第一个城市的序号，\(b[i]\)是第二个城市的序号，序列中在后元素的序号必定大于在前的元素的序号，这确定了第一个城市的位置关系，同时，如果还有\(b[j]&lt;b[i](j&lt;i)\)，则确定了第二个城市的位置关系。一条航线的两个">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-01-27T09:44:00.000Z">
-<meta property="article:modified_time" content="2023-01-27T10:08:57.762Z">
+<meta property="article:modified_time" content="2023-02-01T05:07:01.226Z">
 <meta property="article:author" content="Schrodinger of Night Breeze">
 <meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="AcWing">
 <meta property="article:tag" content="Dynamic Programming">
-<meta property="article:tag" content="LIS">
 <meta name="twitter:card" content="summary">
 
 
@@ -134,12 +133,12 @@
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -194,9 +193,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-01-27 17:44:00 / Modified: 18:08:57" itemprop="dateCreated datePublished" datetime="2023-01-27T17:44:00+08:00">2023-01-27</time>
+      <time title="Created: 2023-01-27 17:44:00" itemprop="dateCreated datePublished" datetime="2023-01-27T17:44:00+08:00">2023-01-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-02-01 13:07:01" itemprop="dateModified" datetime="2023-02-01T13:07:01+08:00">2023-02-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -216,15 +221,7 @@
         </span>
           , 
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/CS/Algorithm/AcWing/Second-Level/" itemprop="url" rel="index"><span itemprop="name">Second-Level</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/CS/Algorithm/AcWing/Second-Level/Chapter1-Dynamic-Programming/" itemprop="url" rel="index"><span itemprop="name">Chapter1-Dynamic Programming</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/CS/Algorithm/AcWing/Second-Level/Chapter1-Dynamic-Programming/LIS/" itemprop="url" rel="index"><span itemprop="name">LIS</span></a>
+          <a href="/categories/CS/Algorithm/AcWing/Dynamic-Programming/" itemprop="url" rel="index"><span itemprop="name">Dynamic Programming</span></a>
         </span>
     </span>
 
@@ -258,7 +255,6 @@ class="math inline">\(b[j]&lt;b[i](j&lt;i)\)</span>，则确定了第二个城�
               <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
               <a href="/tags/AcWing/" rel="tag"># AcWing</a>
               <a href="/tags/Dynamic-Programming/" rel="tag"># Dynamic Programming</a>
-              <a href="/tags/LIS/" rel="tag"># LIS</a>
           </div>
 
         
