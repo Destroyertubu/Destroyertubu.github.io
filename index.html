@@ -119,9 +119,19 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
@@ -137,6 +147,97 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/08/CUDA-Programming-Log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Schrodinger of Night Breeze">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LostMagician">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | LostMagician">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/08/CUDA-Programming-Log/" class="post-title-link" itemprop="url">CUDA Programming Log</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-03-08 21:48:37 / Modified: 22:13:28" itemprop="dateCreated datePublished" datetime="2024-03-08T21:48:37+08:00">2024-03-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CUDA/" itemprop="url" rel="index"><span itemprop="name">CUDA</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>运行代码的时候报错： <img
+src="image/CUDA-Programming-Log/1709906208283.png"
+alt="1709906208283" /></p>
+<p>代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">128</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> M = <span class="built_in">sizeof</span>(real) * N;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> BLOCK_SIZE = <span class="number">32</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">unsigned</span> FULL_MASK = <span class="number">0xffffffff</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> __global__ <span class="title">test_sds</span><span class="params">(real *d_x, <span class="type">int</span> N)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> tid = threadIdx.x;</span><br><span class="line">    <span class="type">int</span> bid = blockIdx.x;</span><br><span class="line">    <span class="type">int</span> n = bid * blockDim.x + tid;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;thread %d: %d\n&quot;</span>, n, __shfl_down_sync(FULL_MASK, n, <span class="number">4</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">test</span><span class="params">(real *d_x, <span class="type">int</span> N)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> grid_size = (N + BLOCK_SIZE - <span class="number">1</span>) / BLOCK_SIZE;</span><br><span class="line">    test_sds&lt;&lt;&lt;grid_size, BLOCK_SIZE&gt;&gt;&gt;(d_x, N);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    real *h_x = (real *)<span class="built_in">malloc</span>(N);       <span class="comment">// 这句有问题，malloc的参数应该是 M</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; N;i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        h_x[i] = <span class="number">1.00</span> + i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    real *d_x;</span><br><span class="line">    <span class="built_in">CHECK</span>(<span class="built_in">cudaMalloc</span>(&amp;d_x, M));       <span class="comment">// 执行这句时报错，cudaMalloc出错时，报错显示的是malloc（之前的图片）</span></span><br><span class="line">    <span class="built_in">CHECK</span>(<span class="built_in">cudaMemcpy</span>(d_x, h_x, M, cudaMemcpyHostToDevice));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">test</span>(d_x, N);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(h_x);</span><br><span class="line">    <span class="built_in">CHECK</span>(<span class="built_in">cudaFree</span>(d_x));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>把第一句的<span class="math inline">\(N\)</span>改为<span
+class="math inline">\(M\)</span>之后，顺利执行。malloc和cudaMalloc都是在堆上分配，这应该是一个数组越界访问的问题。已知float的大小为
+<code>4</code>字节，将循环条件：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; N / <span class="number">4</span>;i ++ )</span><br><span class="line">&#123;</span><br><span class="line">    h_x[i] = <span class="number">1.00</span> + i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序顺利运行。经过尝试发现，跳出边界最大可为<span
+class="math inline">\(N / 4 +
+2\)</span>，说明cudaMalloc在上一段内存之后的第九个字节开始分配，隔了两个<span
+class="math inline">\(float\)</span>类型。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
